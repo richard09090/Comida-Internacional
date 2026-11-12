@@ -83,3 +83,91 @@ h2 {
 h2:hover {
     color: #f39c12; 
 }
+/* Estilo general del cuerpo */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: #111;
+}
+
+/* Video de fondo en bucle y fijo */
+#video-fondo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+/* Estilo del Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #ffcc00;
+}
+
+/* Estilo de los íconos de redes sociales en el Header y Footer */
+.redes-container a, .footer-redes a {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Efecto cuando pasas el mouse por encima de los íconos */
+.redes-container a:hover, .footer-redes a:hover {
+    color: #ffcc00;
+}
+
+/* Listas y párrafos */
+ul {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin: 20px 40px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+p {
+    background-color: rgba(0, 0, 0, 0.452);
+    padding: 20px;
+    margin: 20px 40px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+/* Contenedores de videos e imágenes incrustadas */
+iframe, img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Secciones y Footer */
+section {
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.76);
+    margin: 20px 0;
+}
+
+.mi-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 40px;
+}
