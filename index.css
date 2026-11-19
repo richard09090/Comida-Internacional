@@ -383,7 +383,7 @@ a[href="index.html"]:hover {
 .icono-fugitivo {
     position: fixed !important;
     z-index: 999 !important;
-    transition: left 0.18s ease-out, top 0.18s ease-out, transform 0.2s ease-out;
+    transition: left 0.45s ease-out, top 0.20s ease-out, transform 0.2s ease-out;
     cursor: pointer;
     display: inline-block;
 }
@@ -392,4 +392,66 @@ a[href="index.html"]:hover {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
     pointer-events: none;
+}
+/* --- DIÁLOGO DE FELICITACIÓN AL ATRAPAR --- */
+.dialogo-captura {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    width: min(90vw, 440px);
+    background-color: rgba(15, 10, 30, 0.94);
+    backdrop-filter: blur(10px);
+    border: 2px solid #ffcc00;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.45);
+}
+
+.dialogo-captura h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.tiempo-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background-color: rgba(255, 204, 0, 0.18);
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.acciones-dialogo {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-ir-red {
+    background-color: #ffcc00;
+    color: #000000 !important;
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-decoration: none !important;
+}
+
+.btn-seguir {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffcc00;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-seguir:hover {
+    background-color: rgba(255, 255, 255, 0.12);
 }

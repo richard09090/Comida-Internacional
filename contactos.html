@@ -18,21 +18,41 @@
         </p>
     </div>
 
+    <!-- Diálogo de felicitación al atrapar un ícono -->
+    <div id="dialogo-captura" class="dialogo-captura" style="display: none;">
+        <h2 id="titulo-dialogo">¡Atrapado!</h2>
+        <p id="mensaje-dialogo"></p>
+        <p id="tiempo-dialogo" class="tiempo-badge"></p>
+        <div class="acciones-dialogo">
+            <a id="enlace-red" href="#" target="_blank" rel="noopener noreferrer" class="btn-ir-red">Abrir red</a>
+            <button type="button" id="btn-seguir" class="btn-seguir">Seguir cazando</button>
+        </div>
+    </div>
+
     <!-- Íconos fugitivos -->
-    <a href="https://wa.me/5491123698267" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="ws">
+    <a href="https://wa.me/5491123698267" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="ws" data-nombre="WhatsApp">
         <img src="whatsapp.png" alt="WhatsApp" width="55">
     </a>
 
-    <a href="https://www.instagram.com/richard000711" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="ig">
+    <a href="https://www.instagram.com/richard000711" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="ig" data-nombre="Instagram">
         <img src="instagram.png" alt="Instagram" width="55">
     </a>
 
-    <a href="https://facebook.com/tu_usuario" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="fb">
+    <a href="https://facebook.com/tu_usuario" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="fb" data-nombre="Facebook">
         <img src="facebook.png" alt="Facebook" width="55">
     </a>
 
     <script>
         const fugitivos = document.querySelectorAll('.icono-fugitivo');
+        const dialogo = document.getElementById('dialogo-captura');
+        const tituloDialogo = document.getElementById('titulo-dialogo');
+        const mensajeDialogo = document.getElementById('mensaje-dialogo');
+        const tiempoDialogo = document.getElementById('tiempo-dialogo');
+        const enlaceRed = document.getElementById('enlace-red');
+        const btnSeguir = document.getElementById('btn-seguir');
+
+        let inicioTiempo = null;
+        let juegoPausado = false;
 
         const iniciales = [
             { left: 25, top: 55 },
@@ -46,7 +66,16 @@
             icono.style.top = (window.innerHeight * pos.top) / 100 + 'px';
         });
 
+        function iniciarCronometroSiHaceFalta() {
+            if (inicioTiempo === null) {
+                inicioTiempo = performance.now();
+            }
+        }
+
         function escapar(icono) {
+            if (juegoPausado) return;
+            iniciarCronometroSiHaceFalta();
+
             const margen = 90;
             const maxX = Math.max(margen, window.innerWidth - margen);
             const maxY = Math.max(margen, window.innerHeight - margen);
@@ -61,6 +90,9 @@
         }
 
         document.addEventListener('mousemove', (e) => {
+            if (juegoPausado) return;
+            iniciarCronometroSiHaceFalta();
+
             fugitivos.forEach((icono) => {
                 const rect = icono.getBoundingClientRect();
                 const centroX = rect.left + rect.width / 2;
@@ -72,6 +104,54 @@
                     escapar(icono);
                 }
             });
+        });
+
+        function obtenerDialogoPorTiempo(segundos, nombreRed) {
+            if (segundos < 2) {
+                return {
+                    titulo: '¡REFLEJOS DE MBEJÚ GALÁCTICO! ⚡',
+                    texto: `¡Ni parpadeaste y ya cazaste ${nombreRed}! Tenés más reflejos que un gato en sartén caliente.`
+                };
+            } else if (segundos < 6) {
+                return {
+                    titulo: '¡Bien ahí, cazador espacial! 🎯',
+                    texto: `Le costó escaparse, pero caíste encima de ${nombreRed} como un campeón.`
+                };
+            } else if (segundos < 12) {
+                return {
+                    titulo: '¡Por fin! ¡Ya era hora! 😅',
+                    texto: `Te hizo correr media galaxia, pero ${nombreRed} ya es tuyo. Tomate un mate y descansá la muñeca.`
+                };
+            } else {
+                return {
+                    titulo: '¡EPOPÉYA INTERGALÁCTICA CUMPLIDA! 🏆',
+                    texto: `Casi se recibe de fugitivo profesional ${nombreRed}, pero no te rendiste. ¡Respeto total!`
+                };
+            }
+        }
+
+        fugitivos.forEach((icono) => {
+            icono.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que se abra la pestaña de golpe antes de leer el diálogo
+                iniciarCronometroSiHaceFalta();
+
+                const segundos = Number(((performance.now() - inicioTiempo) / 1000).toFixed(2));
+                const nombreRed = icono.dataset.nombre || 'la red';
+                const info = obtenerDialogoPorTiempo(segundos, nombreRed);
+
+                juegoPausado = true;
+                tituloDialogo.textContent = info.titulo;
+                mensajeDialogo.textContent = info.texto;
+                tiempoDialogo.textContent = `Tiempo: ${segundos} s`;
+                enlaceRed.href = icono.href;
+                dialogo.style.display = 'block';
+            });
+        });
+
+        btnSeguir.addEventListener('click', () => {
+            dialogo.style.display = 'none';
+            juegoPausado = false;
+            inicioTiempo = performance.now(); // Reinicia el cronómetro para la próxima captura
         });
     </script>
 
