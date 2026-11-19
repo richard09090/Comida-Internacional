@@ -302,3 +302,52 @@ a[href="contactos.html"]:hover {
     color: #ffffff;
     box-shadow: 0 10px 20px rgba(255, 68, 68, 0.6);
 }
+/* --- EFECTOS GRACIOSOS EN CONTACTO --- */
+
+.redes-contacto {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.redes-contacto a {
+    display: inline-block;
+    transition: transform 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.redes-contacto a img {
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Cada red social hace una payasada distinta al pasarle el mouse */
+.redes-contacto a:nth-child(1):hover {
+    transform: translateY(-18px) rotate(-15deg) scale(1.25);
+}
+
+.redes-contacto a:nth-child(2):hover {
+    transform: translateX(20px) rotate(360deg) scale(1.2);
+}
+
+.redes-contacto a:nth-child(3):hover {
+    transform: translate(-15px, 15px) rotate(15deg) scale(1.25);
+}
+
+.redes-contacto a:hover img {
+    box-shadow: 0 0 18px rgba(255, 204, 0, 0.85);
+}
+
+/* El "Volver al Inicio" se hace el difícil y se corre un toque */
+a[href="index.html"] {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+a[href="index.html"]:hover {
+    transform: translateX(25px) rotate(-3deg);
+    background-color: #ffcc00;
+    color: #000000;
+    text-decoration: none;
+}
