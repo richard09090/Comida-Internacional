@@ -2,35 +2,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Contacto - Mbejú</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Atrapa mis Redes! - Mbejú</title>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
-<body>
+<body class="fondo-contacto">
 
-    <h1>Contacto y Redes</h1>
+    <div class="contenedor-juego text-center">
+        <h1>¡Atrapa mis redes si podés! 🏃‍♂️💨</h1>
+        <p class="subtitulo-guaraní">Intentá hacerles clic... si te dejan</p>
 
-    <!-- Enlace para volver al inicio (Punto 4 del práctico) -->
-    <p>
-        <a href="index.html">Volver al Inicio</a>
-    </p>
+        <p style="margin-top: 20px;">
+            <a href="index.html">← Volver al Inicio (este sí se deja)</a>
+        </p>
+    </div>
 
-    <!-- Redes sociales con imágenes (Punto 5 del práctico) -->
+    <!-- Íconos fugitivos -->
     <div class="redes-contacto">
-        <!-- WhatsApp sin espacios -->
-        <a href="https://wa.me/5491123698267" target="_blank" rel="noopener noreferrer">
-            <img src="whatsapp.png" alt="WhatsApp" width="40">
+        <a href="https://wa.me/5491123698267" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" style="top: 45%; left: 30%;">
+            <img src="whatsapp.png" alt="WhatsApp" width="55">
         </a>
 
-        <!-- Instagram corregido -->
-        <a href="https://www.instagram.com/richard000711" target="_blank" rel="noopener noreferrer">
-            <img src="instagram.png" alt="Instagram" width="40">
+        <a href="https://www.instagram.com/richard000711" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" style="top: 45%; left: 48%;">
+            <img src="instagram.png" alt="Instagram" width="55">
         </a>
 
-        <!-- Facebook (puedes cambiarlo o dejarlo) -->
-        <a href="https://facebook.com/tu_usuario" target="_blank" rel="noopener noreferrer">
-            <img src="facebook.png" alt="Facebook" width="40">
+        <a href="https://facebook.com/tu_usuario" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" style="top: 45%; left: 66%;">
+            <img src="facebook.png" alt="Facebook" width="55">
         </a>
     </div>
+
+    <!-- Script que hace que huyan del cursor -->
+    <script>
+        const fugitivos = document.querySelectorAll('.icono-fugitivo');
+
+        fugitivos.forEach(icono => {
+            icono.addEventListener('mouseover', () => {
+                // Calcula una posición aleatoria dentro de la pantalla sin salirse de los bordes
+                const maxAncho = window.innerWidth - 90;
+                const maxAlto = window.innerHeight - 90;
+
+                const nuevaX = Math.max(20, Math.floor(Math.random() * maxAncho));
+                const nuevaY = Math.max(20, Math.floor(Math.random() * maxAlto));
+                const giroAleatorio = Math.floor(Math.random() * 720) - 360;
+
+                icono.style.left = `${nuevaX}px`;
+                icono.style.top = `${nuevaY}px`;
+                icono.style.transform = `rotate(${giroAleatorio}deg) scale(1.2)`;
+            });
+        });
+    </script>
 
 </body>
 </html>

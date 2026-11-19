@@ -351,3 +351,44 @@ a[href="index.html"]:hover {
     color: #000000;
     text-decoration: none;
 }
+/* --- FONDO ANIMADO Y MINIJUEGO DE CONTACTO --- */
+.fondo-contacto {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden; /* Evita que aparezcan barras de desplazamiento cuando huyen */
+    background: linear-gradient(-45deg, #1a0033, #3d0066, #00334d, #4d1a00);
+    background-size: 400% 400%;
+    animation: fondo-psicodelico 10s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+}
+
+@keyframes fondo-psicodelico {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.contenedor-juego {
+    background-color: rgba(0, 0, 0, 0.55);
+    padding: 25px 40px;
+    border-radius: 20px;
+    border: 2px solid #ffcc00;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Estilo de los íconos que escapan */
+.icono-fugitivo {
+    position: fixed;
+    z-index: 10;
+    transition: left 0.25s ease-out, top 0.25s ease-out, transform 0.25s ease-out;
+    cursor: pointer;
+}
+
+.icono-fugitivo img {
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
+}
