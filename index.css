@@ -354,8 +354,8 @@ a[href="index.html"]:hover {
 /* --- FONDO ANIMADO Y MINIJUEGO DE CONTACTO --- */
 .fondo-contacto {
     margin: 0;
-    height: 100vh;
-    overflow: hidden; /* Evita que aparezcan barras de desplazamiento cuando huyen */
+    min-height: 100vh;
+    overflow: hidden;
     background: linear-gradient(-45deg, #1a0033, #3d0066, #00334d, #4d1a00);
     background-size: 400% 400%;
     animation: fondo-psicodelico 10s ease infinite;
@@ -380,15 +380,16 @@ a[href="index.html"]:hover {
     z-index: 1;
 }
 
-/* Estilo de los íconos que escapan */
 .icono-fugitivo {
-    position: fixed;
-    z-index: 10;
-    transition: left 0.25s ease-out, top 0.25s ease-out, transform 0.25s ease-out;
+    position: fixed !important;
+    z-index: 999 !important;
+    transition: left 0.18s ease-out, top 0.18s ease-out, transform 0.2s ease-out;
     cursor: pointer;
+    display: inline-block;
 }
 
 .icono-fugitivo img {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
+    pointer-events: none;
 }

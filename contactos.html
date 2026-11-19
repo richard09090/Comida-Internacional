@@ -9,7 +9,7 @@
 </head>
 <body class="fondo-contacto">
 
-    <div class="contenedor-juego text-center">
+    <div class="contenedor-juego">
         <h1>¡Atrapa mis redes si podés! 🏃‍♂️💨</h1>
         <p class="subtitulo-guaraní">Intentá hacerles clic... si te dejan</p>
 
@@ -19,37 +19,58 @@
     </div>
 
     <!-- Íconos fugitivos -->
-    <div class="redes-contacto">
-        <a href="https://wa.me/5491123698267" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" style="top: 45%; left: 30%;">
-            <img src="whatsapp.png" alt="WhatsApp" width="55">
-        </a>
+    <a href="https://wa.me/5491123698267" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="ws">
+        <img src="whatsapp.png" alt="WhatsApp" width="55">
+    </a>
 
-        <a href="https://www.instagram.com/richard000711" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" style="top: 45%; left: 48%;">
-            <img src="instagram.png" alt="Instagram" width="55">
-        </a>
+    <a href="https://www.instagram.com/richard000711" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="ig">
+        <img src="instagram.png" alt="Instagram" width="55">
+    </a>
 
-        <a href="https://facebook.com/tu_usuario" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" style="top: 45%; left: 66%;">
-            <img src="facebook.png" alt="Facebook" width="55">
-        </a>
-    </div>
+    <a href="https://facebook.com/tu_usuario" target="_blank" rel="noopener noreferrer" class="icono-fugitivo" id="fb">
+        <img src="facebook.png" alt="Facebook" width="55">
+    </a>
 
-    <!-- Script que hace que huyan del cursor -->
     <script>
         const fugitivos = document.querySelectorAll('.icono-fugitivo');
 
-        fugitivos.forEach(icono => {
-            icono.addEventListener('mouseover', () => {
-                // Calcula una posición aleatoria dentro de la pantalla sin salirse de los bordes
-                const maxAncho = window.innerWidth - 90;
-                const maxAlto = window.innerHeight - 90;
+        const iniciales = [
+            { left: 25, top: 55 },
+            { left: 48, top: 55 },
+            { left: 70, top: 55 }
+        ];
 
-                const nuevaX = Math.max(20, Math.floor(Math.random() * maxAncho));
-                const nuevaY = Math.max(20, Math.floor(Math.random() * maxAlto));
-                const giroAleatorio = Math.floor(Math.random() * 720) - 360;
+        fugitivos.forEach((icono, index) => {
+            const pos = iniciales[index] || { left: 40, top: 55 };
+            icono.style.left = (window.innerWidth * pos.left) / 100 + 'px';
+            icono.style.top = (window.innerHeight * pos.top) / 100 + 'px';
+        });
 
-                icono.style.left = `${nuevaX}px`;
-                icono.style.top = `${nuevaY}px`;
-                icono.style.transform = `rotate(${giroAleatorio}deg) scale(1.2)`;
+        function escapar(icono) {
+            const margen = 90;
+            const maxX = Math.max(margen, window.innerWidth - margen);
+            const maxY = Math.max(margen, window.innerHeight - margen);
+
+            const nuevaX = Math.floor(Math.random() * (maxX - 30)) + 20;
+            const nuevaY = Math.floor(Math.random() * (maxY - 30)) + 20;
+            const giro = Math.floor(Math.random() * 720) - 360;
+
+            icono.style.left = `${nuevaX}px`;
+            icono.style.top = `${nuevaY}px`;
+            icono.style.transform = `rotate(${giro}deg) scale(1.15)`;
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            fugitivos.forEach((icono) => {
+                const rect = icono.getBoundingClientRect();
+                const centroX = rect.left + rect.width / 2;
+                const centroY = rect.top + rect.height / 2;
+
+                const distancia = Math.hypot(e.clientX - centroX, e.clientY - centroY);
+
+                if (distancia < 95) {
+                    escapar(icono);
+                }
             });
         });
     </script>
