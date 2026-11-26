@@ -455,3 +455,65 @@ a[href="index.html"]:hover {
 .btn-seguir:hover {
     background-color: rgba(255, 255, 255, 0.12);
 }
+/* --- TARJETAS RESPONSIVAS (4 / 2x2 / 1) --- */
+.tarjeta-responsive {
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    border: 2px solid rgba(255, 204, 0, 0.45);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tarjeta-responsive:hover {
+    transform: translateY(-8px);
+    border-color: #ffcc00;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.35);
+}
+
+.img-tarjeta {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid #9b5de5; /* Guiño al recuadro violeta del esquema */
+}
+
+.img-tarjeta img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.tarjeta-responsive:hover .img-tarjeta img {
+    transform: scale(1.08);
+}
+
+.tarjeta-responsive h3 {
+    color: #ffcc00;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.tarjeta-responsive p {
+    font-size: 14px;
+    color: #f1f1f1;
+    margin: 0;
+}
+
+.btn-tarjeta {
+    display: block;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background-color: rgba(155, 93, 229, 0.25);
+    border: 2px solid #9b5de5;
+    color: #ffffff !important;
+    font-weight: bold;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+
+.btn-tarjeta:hover {
+    background-color: #ffcc00;
+    border-color: #ffcc00;
+    color: #000000 !important;
+}
