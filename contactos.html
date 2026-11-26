@@ -100,7 +100,7 @@
 
                 const distancia = Math.hypot(e.clientX - centroX, e.clientY - centroY);
 
-                if (distancia < 95) {
+                if (distancia < 55) {
                     escapar(icono);
                 }
             });
@@ -117,7 +117,7 @@
                     titulo: '¡Bien ahí, cazador espacial! 🎯',
                     texto: `Le costó escaparse, pero caíste encima de ${nombreRed} como un campeón.`
                 };
-            } else if (segundos < 12) {
+            } else if (segundos < 16) {
                 return {
                     titulo: '¡Por fin! ¡Ya era hora! 😅',
                     texto: `Te hizo correr media galaxia, pero ${nombreRed} ya es tuyo. Tomate un mate y descansá la muñeca.`
@@ -151,7 +151,7 @@
         btnSeguir.addEventListener('click', () => {
             dialogo.style.display = 'none';
             juegoPausado = false;
-            inicioTiempo = performance.now(); // Reinicia el cronómetro para la próxima captura
+            inicioTiempo = performance.now(); 
         });
     </script>
 
